@@ -6,6 +6,68 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "Distributed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "Received",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdrawn",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -23,34 +85,49 @@
 						"type": "address[]"
 					}
 				],
-				"name": "addEntry",
+				"name": "addPaper",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "balance",
+				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "entries",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "distribute",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
 				"outputs": [
 					{
-						"internalType": "string",
-						"name": "id",
-						"type": "string"
-					},
-					{
 						"internalType": "uint256",
-						"name": "upvotes",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "downvotes",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -59,7 +136,26 @@
 			},
 			{
 				"inputs": [],
-				"name": "getEntries",
+				"name": "getNumberOfPapers",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					}
+				],
+				"name": "getPaperDetails",
 				"outputs": [
 					{
 						"components": [
@@ -80,16 +176,56 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "upvotes",
+								"name": "cited_total",
 								"type": "uint256"
 							},
 							{
 								"internalType": "uint256",
-								"name": "downvotes",
+								"name": "cited_payout",
 								"type": "uint256"
 							}
 						],
-						"internalType": "struct ApprovalQueue.Entry[]",
+						"internalType": "struct ApprovalQueue.paper",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPapers",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "id",
+								"type": "string"
+							},
+							{
+								"internalType": "string[]",
+								"name": "citations",
+								"type": "string[]"
+							},
+							{
+								"internalType": "address[]",
+								"name": "addresses",
+								"type": "address[]"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cited_total",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "cited_payout",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct ApprovalQueue.paper[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -99,11 +235,40 @@
 			},
 			{
 				"inputs": [],
-				"name": "getLeastVotedEntryId",
+				"name": "owner",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address",
 						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "papers",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cited_total",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cited_payout",
 						"type": "uint256"
 					}
 				],
@@ -114,19 +279,18 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "id",
+						"name": "_amount",
 						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "upvote",
-						"type": "bool"
 					}
 				],
-				"name": "vote",
+				"name": "withdraw",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -142,7 +306,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/AQ.sol": "ApprovalQueue"
+			"contracts/PP.sol": "ApprovalQueue"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -156,12 +320,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/AQ.sol": {
-			"keccak256": "0x125b41cd270a65a5bb66fc0d276344b960bf0a80c039cf0c60d0d28cca9116f4",
+		"contracts/PP.sol": {
+			"keccak256": "0xbcec30580491fc18cde179f544d8b77d028cc57b5fa0efddce1176aab8dcd6da",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e75f4c0ba695cc850f686d64fed9abf1fb41cd67ae51b1f233dfbd6ee90a4dc7",
-				"dweb:/ipfs/QmeDtW1mKBypMfJLfrsYzEEeSUrats7Fkm3ETCN5LW3vHz"
+				"bzz-raw://fcb3ad3c4f678008728bbde59050dabcc0bf821cd56717d80cf6e92792ff930a",
+				"dweb:/ipfs/QmWPPNtcWsPNfkdBjZFwsggkZTGWkBybTnox3GNCgw5G9v"
 			]
 		}
 	},
