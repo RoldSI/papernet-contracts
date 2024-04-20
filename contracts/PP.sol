@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 contract ApprovalQueue {
     address public trustedContract = 0xC0e970d9C1806FAD4e68a3078251DbE1CE37a663;
     address public owner;
-    uint public balance;
+    uint private balance;
 
     // Event declaration for logging
     event Received(address, uint);
@@ -20,13 +20,13 @@ contract ApprovalQueue {
         require(msg.sender == owner, "You are not the owner.");
         _;
     }
-    // Modifier to restrict function access to only the approval queue trusted contract
-    modifier onlyTrustedContract() {
-        require(msg.sender == trustedContract, "Caller is not the trusted contract");
+    // Modifier to restrict function access to only the approval queue trusted contract or ownwer
+    modifier onlyTrustedContractOrOwner() {
+        require(msg.sender == trustedContract || msg.sender == owner, "Caller is not the trusted contract or owner");
         _;
     }
 
-    function updateTrustedContract(address _newTrustedContract) public {
+    function updateTrustedContract(address _newTrustedContract) public onlyOwner {
         // Add onlyOwner or similar modifier to restrict who can call this function
         trustedContract = _newTrustedContract;
     }
@@ -43,7 +43,7 @@ contract ApprovalQueue {
     }
 
     // Function to distribute funds based on your logic
-    address[] public authorAddresses;
+    address[] private authorAddresses;
     function distribute() public {
         for (uint i = 0; i < keys.length; i++) {
             for(uint j = 0; j < papers[keys[i]].addresses.length; j++) {
@@ -76,7 +76,7 @@ contract ApprovalQueue {
     }
 
     // mapping(string => Entry) public entries;
-    mapping(string => paper) public papers;
+    mapping(string => paper) private papers;
     mapping(string => bool) private papersExists;
     string[] private keys;
 
@@ -96,7 +96,7 @@ contract ApprovalQueue {
     }
     
     // function to add an entry to the queue
-    function addPaper(string memory id, string[] memory citations, address[] memory addresses) public onlyTrustedContract {
+    function addPaper(string memory id, string[] memory citations, address[] memory addresses) public onlyTrustedContractOrOwner {
         require(!papersExists[id], "Entry ID must be unique.");
         papers[id] = paper(id, citations, addresses, 0, 0);
         papersExists[id] = true;

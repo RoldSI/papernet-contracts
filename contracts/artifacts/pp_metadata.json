@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.25+commit.b61c2a91"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "citations",
+						"type": "string[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "addresses",
+						"type": "address[]"
+					}
+				],
+				"name": "addPaper",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/AQ.sol": "pp"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/AQ.sol": {
+			"keccak256": "0x4dc1643b6aa667e8d03241be1d4e97174ba1e97ecc2d9055bb9f651e42afc9b0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1fe63c5f06603688095765c9c6b0c0c16e865b353e2a07c55f93f2f0862b6487",
+				"dweb:/ipfs/QmeFMLK74KzVVrnjrb8AuLV4zWNkBTbq3yfQzCeioRyqka"
+			]
+		}
+	},
+	"version": 1
+}

@@ -91,38 +91,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "authorAddresses",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "balance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "distribute",
 				"outputs": [],
@@ -255,35 +223,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"name": "papers",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "id",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "cited_total",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "cited_payout",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "trustedContract",
 				"outputs": [
@@ -355,11 +294,11 @@
 	},
 	"sources": {
 		"contracts/PP.sol": {
-			"keccak256": "0x05a765077e656f022299c2aaa4556d72a5a20e783627d7cbb2279998880791c1",
+			"keccak256": "0x76e643dbbb7d137b59c5f116255baf15cf9b4bf8cbfec058adea32c02d1fd9b0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9f7e9ca2a26b7f2139fb6dab02d9aa21b1b7c151cba6966b6e80f9f3b468cfe3",
-				"dweb:/ipfs/QmeiDSWzXjVANuYP5QYWWwwQJcRyTRDQRia2LectwcqaCA"
+				"bzz-raw://e7c09afdbef8eaa2dab22df86a8086ef5614182ba3d79142e9e5704a9b7d7c75",
+				"dweb:/ipfs/Qmbwckm59Bfmjbx5Ke6Jej9pyEoSxpsAAsN4Jn6H3NR4Af"
 			]
 		}
 	},

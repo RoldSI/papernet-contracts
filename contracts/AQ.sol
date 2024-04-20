@@ -1,7 +1,29 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+interface pp {
+    function addPaper(string memory id, string[] memory citations, address[] memory addresses) external;
+}
+
 contract ApprovalQueue {
+    pp public paperPool;
+    address public owner;
+
+    // Modifier to restrict function access to only the owner
+    modifier onlyOwner() {
+        require(msg.sender == owner, "You are not the owner.");
+        _;
+    }
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function updatePaperPool(address newPaperPool) public onlyOwner {
+        // Add onlyOwner or similar modifier to restrict who can call this function
+        paperPool = pp(newPaperPool);
+    }
+
     struct Entry {
         string id;
         string[] citations;
@@ -48,6 +70,7 @@ contract ApprovalQueue {
         // Check if total votes reached 5, then remove the entry
         if (entry.upvotes + entry.downvotes == 5) {
             uint lastId = entries.length - 1;
+            paperPool.addPaper(entries[id].id, entries[id].citations, entries[id].addresses);
             entries[id] = entries[lastId];
             entries.pop();
         }
