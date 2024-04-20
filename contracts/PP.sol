@@ -43,20 +43,21 @@ contract ApprovalQueue {
     }
 
     // Function to distribute funds based on your logic
+    address[] public authorAddresses;
     function distribute() public {
-        address[] storage addresses;
         for (uint i = 0; i < keys.length; i++) {
             for(uint j = 0; j < papers[keys[i]].addresses.length; j++) {
-                addresses.push(papers[keys[i]].addresses[j]);
+                authorAddresses.push(papers[keys[i]].addresses[j]);
             }
         }
-        if(addresses.length==0) return;
-        uint indivPayout = balance/addresses.length;
-        for(uint i = 0; i < addresses.length; i++) {
-            payable(addresses[i]).transfer(indivPayout);
-            emit Distributed(addresses[i], indivPayout);
+        if(authorAddresses.length==0) return;
+        uint indivPayout = balance/authorAddresses.length;
+        for(uint i = 0; i < authorAddresses.length; i++) {
+            payable(authorAddresses[i]).transfer(indivPayout);
+            emit Distributed(authorAddresses[i], indivPayout);
         }
-        balance -= indivPayout * addresses.length;
+        balance -= indivPayout * authorAddresses.length;
+        delete authorAddresses;
     }
 
      function withdraw(uint _amount) public onlyOwner {

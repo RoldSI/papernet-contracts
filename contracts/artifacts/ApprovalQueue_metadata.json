@@ -91,6 +91,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "authorAddresses",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "balance",
 				"outputs": [
@@ -104,18 +123,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address payable",
-						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					}
-				],
+				"inputs": [],
 				"name": "distribute",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -276,6 +284,32 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "trustedContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newTrustedContract",
+						"type": "address"
+					}
+				],
+				"name": "updateTrustedContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -321,11 +355,11 @@
 	},
 	"sources": {
 		"contracts/PP.sol": {
-			"keccak256": "0xbcec30580491fc18cde179f544d8b77d028cc57b5fa0efddce1176aab8dcd6da",
+			"keccak256": "0x05a765077e656f022299c2aaa4556d72a5a20e783627d7cbb2279998880791c1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fcb3ad3c4f678008728bbde59050dabcc0bf821cd56717d80cf6e92792ff930a",
-				"dweb:/ipfs/QmWPPNtcWsPNfkdBjZFwsggkZTGWkBybTnox3GNCgw5G9v"
+				"bzz-raw://9f7e9ca2a26b7f2139fb6dab02d9aa21b1b7c151cba6966b6e80f9f3b468cfe3",
+				"dweb:/ipfs/QmeiDSWzXjVANuYP5QYWWwwQJcRyTRDQRia2LectwcqaCA"
 			]
 		}
 	},
