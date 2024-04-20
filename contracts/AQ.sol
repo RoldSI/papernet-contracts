@@ -76,6 +76,10 @@ contract ApprovalQueue {
         }
     }
 
+    function toReview() public view returns (bool) {
+        return entries.length>0;
+    }
+
     // Function to get the entry ID with the least sum of up and downvotes
     function getLeastVotedEntryId() public view returns (uint) {
         if (entries.length == 0) return 99999;

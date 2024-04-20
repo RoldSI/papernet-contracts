@@ -11,63 +11,6 @@
 				"type": "constructor"
 			},
 			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "Distributed",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "Received",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "Withdrawn",
-				"type": "event"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -85,85 +28,35 @@
 						"type": "address[]"
 					}
 				],
-				"name": "addPaper",
+				"name": "addEntry",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "distribute",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getNumberOfPapers",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "entries",
+				"outputs": [
+					{
 						"internalType": "string",
 						"name": "id",
 						"type": "string"
-					}
-				],
-				"name": "getPaperDetails",
-				"outputs": [
+					},
 					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "id",
-								"type": "string"
-							},
-							{
-								"internalType": "string[]",
-								"name": "citations",
-								"type": "string[]"
-							},
-							{
-								"internalType": "address[]",
-								"name": "addresses",
-								"type": "address[]"
-							},
-							{
-								"internalType": "uint256",
-								"name": "cited_total",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "cited_payout",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct ApprovalQueue.paper",
-						"name": "",
-						"type": "tuple"
+						"internalType": "uint256",
+						"name": "upvotes",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "downvotes",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -171,7 +64,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "getPapers",
+				"name": "getEntries",
 				"outputs": [
 					{
 						"components": [
@@ -192,18 +85,31 @@
 							},
 							{
 								"internalType": "uint256",
-								"name": "cited_total",
+								"name": "upvotes",
 								"type": "uint256"
 							},
 							{
 								"internalType": "uint256",
-								"name": "cited_payout",
+								"name": "downvotes",
 								"type": "uint256"
 							}
 						],
-						"internalType": "struct ApprovalQueue.paper[]",
+						"internalType": "struct ApprovalQueue.Entry[]",
 						"name": "",
 						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getLeastVotedEntryId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -224,12 +130,25 @@
 			},
 			{
 				"inputs": [],
-				"name": "trustedContract",
+				"name": "paperPool",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "contract pp",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "toReview",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -239,11 +158,11 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_newTrustedContract",
+						"name": "newPaperPool",
 						"type": "address"
 					}
 				],
-				"name": "updateTrustedContract",
+				"name": "updatePaperPool",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -252,18 +171,19 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "id",
 						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "upvote",
+						"type": "bool"
 					}
 				],
-				"name": "withdraw",
+				"name": "vote",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"stateMutability": "payable",
-				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -279,7 +199,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/PP.sol": "ApprovalQueue"
+			"contracts/AQ.sol": "ApprovalQueue"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -293,12 +213,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/PP.sol": {
-			"keccak256": "0x76e643dbbb7d137b59c5f116255baf15cf9b4bf8cbfec058adea32c02d1fd9b0",
+		"contracts/AQ.sol": {
+			"keccak256": "0x63e4fc0877a070bdddf202098ec9c6d3cf021a5792fefda7447fbbe24434ea7e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e7c09afdbef8eaa2dab22df86a8086ef5614182ba3d79142e9e5704a9b7d7c75",
-				"dweb:/ipfs/Qmbwckm59Bfmjbx5Ke6Jej9pyEoSxpsAAsN4Jn6H3NR4Af"
+				"bzz-raw://3a28dbdd0556fe8acbcfb387a4bcc045f7cc311086dec359a7a4ee5fd1c0c503",
+				"dweb:/ipfs/QmcDjx6srwTrCzvYQ9Xc1mEeYaBfm5Sxc4cF8CZLqnAean"
 			]
 		}
 	},

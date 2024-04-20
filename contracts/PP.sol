@@ -60,7 +60,7 @@ contract ApprovalQueue {
         delete authorAddresses;
     }
 
-     function withdraw(uint _amount) public onlyOwner {
+    function withdraw(uint _amount) public onlyOwner {
         require(address(this).balance >= _amount, "Insufficient balance in contract.");
         payable(owner).transfer(_amount);
         balance -= _amount;
